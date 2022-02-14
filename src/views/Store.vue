@@ -7,6 +7,9 @@
         </div>
         <div class="w-full">
           <ul>
+            <li class="py-2 border-b border-yellow-500 flex">
+              <p class="text-white text-sm">{{path}}</p>
+            </li>
             <li class="py-2 border-b border-yellow-500 flex" v-for="products in catalogo" :key="products.name">
               <p class="text-white text-sm">{{products.name}}</p>
             </li>
@@ -66,6 +69,12 @@ export default {
       ]
     }
   },
+
+  computed: {
+    path(){
+      return this.$route.path
+    }
+  }
 };
 </script>
 <style>
