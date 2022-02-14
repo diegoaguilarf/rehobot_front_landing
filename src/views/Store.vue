@@ -1,16 +1,13 @@
 <template>
   <div class="store-container mb-14 pt-10 w-full h-full flex justify-center">
     <div class="store-content  w-full">
-      <div class="pr-6 w-full h-full">
+      <div class="list-container h-full">
         <div class="w-full mb-10">
           <h2 class="font-bold text-4xl" style="color: rgb(236, 216, 189);">Catalogo</h2>
         </div>
-        <div class="w-full">
-          <ul>
-            <li class="py-2 border-b border-yellow-500 flex">
-              <p class="text-white text-sm">{{path}}</p>
-            </li>
-            <li class="py-2 border-b border-yellow-500 flex" v-for="products in catalogo" :key="products.name">
+        <div class=" w-full">
+          <ul class="w-full">
+            <li class="w-full py-2 border-b border-yellow-500 flex" v-for="products in catalogo" :key="products.name">
               <p class="text-white text-sm">{{products.name}}</p>
             </li>
           </ul>
@@ -52,7 +49,7 @@ export default {
         {name:"Protección contra caídas"},
         {name:"Calzado industrial"},
         {name:"Protección manual"},
-        {name:"Elementos para plan de emergencia"},
+        {name:"Elementos plan de emergencia"},
         {name:"Elementos de bioseguridad"},
       ],
 
@@ -91,6 +88,10 @@ export default {
     padding: 20px 10px;
     justify-items: center;
     background-color: rgb(238, 238, 238);
+  }
+
+  .list-container{
+    width: 250px;
   }
 
   .product-img img{

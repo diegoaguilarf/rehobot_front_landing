@@ -2,8 +2,14 @@
   <div class="contactanos-container py-10 flex justify-center">
     <div class="contactanos-content w-full">
       <div class="pr-5">
-        <div class="contactanos-img w-full" style="">
-
+        <div class="contactanos-img w-full " style="">
+          <div class="img-fondo absolute"></div>
+          <div class="p-14 flex items-center relative">
+            <p class=" font-bold leading-tight" style="font-size: 40px;">¡Estamos para ayudarte!</p>
+          </div>
+          <div class="p-14 flex justify-end relative">
+            <p class="text-4xl  font-bold">Contáctanos</p>
+          </div>
         </div>
       </div>
       <div>
@@ -61,8 +67,19 @@ export default {
 
   .contactanos-img{
     height: 500px;
-    background-color: rgb(247, 150, 63);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    background-color: rgb(254, 206, 81);
     color: rgb(27, 25, 37);
+  }
+
+  .img-fondo{
+    width: 412px;
+    height: 500px;
+    background-image: url("../../assets/constructores.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    opacity: 30%;
   }
 
   .form-container{

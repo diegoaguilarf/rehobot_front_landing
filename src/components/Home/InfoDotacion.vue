@@ -22,7 +22,7 @@ export default {
   
 }
 </script>
-<style>
+<style scoped>
   .dotacion-container{
     height: max-content;
     display: grid;
