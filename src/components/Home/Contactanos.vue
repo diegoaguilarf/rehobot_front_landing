@@ -1,36 +1,36 @@
 <template>
-  <div class="contactanos-container py-10 flex justify-center">
+  <div class="contactanos-container py-10 flex justify-center" id="contacto">
     <div class="contactanos-content w-full">
-      <div class="pr-5">
+      <div class="img-container pr-5">
         <div class="contactanos-img w-full " style="">
           <div class="img-fondo absolute"></div>
-          <div class="p-14 flex items-center relative">
+          <div class="text-container p-14 flex items-center relative">
             <p class=" font-bold leading-tight" style="font-size: 40px;">¡Estamos para ayudarte!</p>
           </div>
-          <div class="p-14 flex justify-end relative">
+          <div class="text-container p-14 flex justify-end relative">
             <p class="text-4xl  font-bold">Contáctanos</p>
           </div>
         </div>
       </div>
-      <div>
+      <div class="form">
         <div class="form-container w-full">
           <form action="" @submit.prevent="onSubmit" class="p-12 font-semibold">
             <div class="inputs-container mb-5 w-full flex">
-              <div class="w-full pr-5 flex flex-col gap-1">
+              <div class="inputs-content w-full pr-5 flex flex-col gap-1">
                 <label for="name">Nombres</label>
                 <input id="name" type="text" class="border border-gray-200 p-2">
               </div>
-              <div class="w-full pl-5 flex flex-col gap-1">
+              <div class="inputs-content w-full pl-5 flex flex-col gap-1">
                 <label for="lastName">Apellidos</label>
                 <input id="lastName" type="text" class="border border-gray-200 p-2">
               </div>
             </div>
             <div class="inputs-container mb-5 w-full flex">
-              <div class="w-full pr-5 flex flex-col gap-1">
+              <div class="inputs-content w-full pr-5 flex flex-col gap-1">
                 <label for="email">Email</label>
                 <input id="email" type="text" class="border border-gray-200 p-2">
               </div>
-              <div class="w-full pl-5 flex flex-col gap-1">
+              <div class="inputs-content w-full pl-5 flex flex-col gap-1">
                 <label for="phone">Numero de celular</label>
                 <input id="phone" type="text" class="border border-gray-200 p-2">
               </div>
@@ -53,7 +53,7 @@ export default {
   
 }
 </script>
-<style>
+<style scoped>
   .contactanos-container{
     height: max-content;
     display: grid;
@@ -100,5 +100,90 @@ export default {
   .message-button button{
     right: -70%;
     bottom: -50px;
+  }
+
+  @media (max-width:1120px) {
+    .contactanos-content{
+      max-width: 100vw !important;
+      width: 100vw !important;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .img-container{
+      padding: 0 !important;
+      margin-bottom: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+
+    .contactanos-img{
+      width: 400px !important;
+    }
+
+    .img-fondo{
+      width: 400px;
+    }
+
+    .form{
+      margin-bottom: 50px;
+      width: 100%;
+    }
+
+    .form-container{
+      margin: 0 auto;
+      width: 650px !important;
+    }
+  }
+
+  @media (max-width:700px){
+    .form-container{
+      width: 500px !important;
+      height: max-content;
+    }
+
+    .inputs-container{
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .inputs-content{
+      padding: 0 !important;
+      margin-bottom: 20px;
+    }
+
+    .message-button button{
+      right: -30%;
+      bottom: -90px;
+    }
+  }
+
+  @media (max-width:550px){
+    .contactanos-img{
+      width: 300px !important;
+    }
+
+    .text-container{
+      padding: 29px;
+    }
+
+    .img-fondo{
+      width: 300px;
+    }
+
+    .form-container{
+      width: 300px !important;
+    }
+
+    .form-container form{
+      padding: 30px ;
+    }
+
+    .message-button button{
+      right: -15%;
+      bottom: -80px;
+    }
   }
 </style>

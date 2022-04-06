@@ -1,7 +1,7 @@
 <template>
   <div class="footer-container w-full">
-    <div class="w-full" style="background-color: rgb(238, 238, 238)"></div>
-    <div class="footer-content p-12 flex">
+    <div class="container-blanco w-full" style="background-color: rgb(238, 238, 238)"></div>
+    <div class="footer-content flex p-5">
       <div class="footer-redes pr-5">
         <div class="w-full h-full">
 
@@ -36,7 +36,7 @@
         </ul>
       </div>
     </div>
-    <div class="w-full"></div>
+    <div class=" w-full"></div>
   </div>
 </template>
 <script>
@@ -62,6 +62,30 @@ export default {
   .footer-redes{
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 1120px){
+    .footer-container{
+      grid-template-columns: 1fr 10%;
+    }
+
+    .footer-content{
+      padding: 45px;
+      width: 100%;
+      height: max-content;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container-blanco{
+      display: none;
+    }
+  }
+
+  @media (max-width: 425px){
+    .footer-content{
+      padding: 40px 15px;
+    }
   }
 
 </style>

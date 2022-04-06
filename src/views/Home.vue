@@ -9,17 +9,17 @@
 
 <script>
 // @ is an alias to /src
-import MarcasAutorizadas from '../components/Home/MarcasAutorizadas.vue'
 import Banner from '../components/Home/Banner.vue'
 import InfoDotacion from '../components/Home/InfoDotacion.vue';
+import MarcasAutorizadas from '../components/Home/MarcasAutorizadas.vue'
 import Contactanos from '../components/Home/Contactanos.vue';
 
 export default {
   name: "Home",
   components: {
-    MarcasAutorizadas,
     Banner,
     InfoDotacion,
+    MarcasAutorizadas,
     Contactanos,
   },
 };

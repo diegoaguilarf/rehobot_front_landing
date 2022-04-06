@@ -18,6 +18,11 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  scrollBehavior (to, ) {
+    return {
+      el: to.hash
+    }
+  }
 });
 
 export default router;

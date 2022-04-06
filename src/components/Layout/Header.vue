@@ -1,27 +1,27 @@
 <template >
-  <div class="header-container w-full flex justify-center items-center fixed">
+  <div class="header-container px-5 w-full flex justify-center items-center fixed">
     <div class="header-content w-full h-full">
       <div class="logo-contaienr">
         <p class="font-bold">Rehobot</p>
       </div>
-      <div class="navbar-contaienr flex justify-center">
+      <div class="navbar-container justify-center">
         <ul class="flex gap-4 text-blueGray-700 font-semibold">
           <li>
             <router-link @click="offViewStore()" to="/">
               <p>Inicio</p>
             </router-link>
           </li>
-          <li>
-            Nosotros
+          <li >
+            <router-link :to="{hash:'#infoDotacion'}">Nosotros</router-link>
           </li>
           <li>
             Servicios
           </li>
           <li>
-            Marcas
+            <router-link :to="{hash:'#marcas'}">Marcas</router-link>
           </li>
           <li>
-            Contacto
+            <router-link :to="{hash:'#contacto'}">Contacto</router-link>
           </li>
         </ul>
       </div>
@@ -34,6 +34,12 @@
             <p class="text-blueGray-700 font-semibold">Productos</p>
           </button>
         </router-link>
+      </div>
+
+      <div class="menu-container w-full">
+        <div class="menu-content" >
+          <svg @click="openSidebar" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </div>
       </div>
     </div>
   </div>
@@ -57,11 +63,15 @@ export default {
       /* const currentPath = this.$route.path */
       this.viewStore = false
       console.log(this.viewStore)
+    },
+
+    openSidebar(){
+      this.$emit("openSidebar")
     }
   },
 }
 </script>
-<style >
+<style scoped>
   .header-container{
     height: 80px;
     background-color: rgb(238, 238, 238);
@@ -75,8 +85,35 @@ export default {
     grid-template-columns: auto 1fr auto;
   }
 
+  .navbar-container{
+    display: flex;
+  }
+
   .onViewStore{
     background-color:rgb(254, 206, 81);
     color: rgb(27, 25, 37);
+  }
+
+  .menu-container{
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .header-content{
+      grid-template-columns: auto 1fr;
+    }
+
+    .navbar-container{
+      display: none;
+    }
+
+    .storeButtton-container{
+      display: none;
+    }
+
+    .menu-container{
+      display: flex;
+      justify-content: end;
+    }
   }
 </style>
