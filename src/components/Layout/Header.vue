@@ -17,9 +17,9 @@
           <li >
             <router-link :to="{hash:'#infoDotacion'}">Nosotros</router-link>
           </li>
-          <li>
+          <!-- <li>
             Servicios
-          </li>
+          </li> -->
           <li>
             <router-link :to="{hash:'#marcas'}">Marcas</router-link>
           </li>
