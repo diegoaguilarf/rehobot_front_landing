@@ -38,14 +38,6 @@
               <p class="text-sm">Empresa llanera con amplia trayectoria en el mercado, teniendo un compromiso</p>
             </div>
           </div>
-          <div class="whatsapp-container w-max text-white rounded-full absolute">
-            <div class="whatsapp-img flex justify-center items-center">
-              <img src="../../assets/logo-whatsapp.png" alt="">
-            </div>
-            <div class="flex justify-center items-center">
-              <p class="">Habla con Rehobot</p>
-            </div>
-          </div>
         </div>
         <div class="info-container2 px-5">
           <p class="mb-5 text-white text-lg">Empresa llanera con amplia trayectoria en el mercado, teniendo un compromiso de calidad y servicio permanente.</p>
@@ -106,25 +98,6 @@ export default {
   .img-container .img-principal{
     max-width: 80%;
     height: 500px;
-  }
-
-  .whatsapp-container{
-    padding: 12px 16px;
-    height: max-content;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    background-color: rgb(42, 219, 38);
-    top: 95%;
-    right: 10%;
-  }
-
-  .whatsapp-img{
-    padding-right: 8px ;
-  }
-
-  .whatsapp-container img{
-    width: 30px;
-    height: 30px;
   }
 
   .info-container h2{

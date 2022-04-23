@@ -1,8 +1,11 @@
 <template >
   <div class="header-container px-5 w-full flex justify-center items-center fixed">
     <div class="header-content w-full h-full">
-      <div class="logo-contaienr">
-        <p class="font-bold">Rehobot</p>
+      <div class="logo-container">
+        <!-- <p class="font-bold">Rehobot</p> -->
+        <router-link to="/">
+          <img src="logo.png" class="h-12" alt="rehobot"/>
+        </router-link>
       </div>
       <div class="navbar-container justify-center">
         <ul class="flex gap-4 text-blueGray-700 font-semibold">
