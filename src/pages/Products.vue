@@ -1,110 +1,83 @@
 <template>
   <Whatsapp />
-  <div class="min-h-screen bg-[#1B1925] pb-20">
-    <Header />
-    <img src="../assets/hero-2.png" class="background absolute top-0 z-0" />
-    <div
-      class="relative z-20 store-container px-5 mb-14 pt-10 w-full h-full flex justify-center"
-    >
-      <div class="store-content w-full">
-        <div class="list-container h-full">
+  <Header />
+  <div class="px-5 min-h-screen w-full flex justify-center bg-[#1B1925] ">
+    <img src="../assets/hero-2.png" class="background w-full h-full object-cover absolute top-0 z-0" />
+      <div class="pt-10 max-w-7xl w-full grid lg:grid-cols-[auto_1fr] gap-5 z-10">
+        <div class="w-64 h-full hidden lg:block">
           <div class="w-full mb-10">
-            <h2 class="font-bold text-4xl" style="color: rgb(236, 216, 189)">
+            <h2 class="font-bold text-4xl text-second-text">
               Catalogo
             </h2>
           </div>
-          <div class="w-full">
+          <div class="w-full flex flex-col gap-5">
             <ul class="w-full">
-              <li
-                class="w-full py-2 border-b border-yellow-500 flex"
-                v-for="category in categories"
-                :key="category.id"
-              >
-                <router-link
-                  :to="{
+              <li class="w-full py-2 border-b border-yellow-500 flex" v-for="category in categories" :key="category.id">
+                <router-link :to="{
                     name: 'category',
                     params: { category: category.slug },
                   }"
                   class="text-white text-sm cursor-pointer"
-                  >{{ category.name }}</router-link
-                >
+                  >{{ category.name }}</router-link>
               </li>
             </ul>
+            <div v-if="$route.params?.category">
+              <router-link to="/productos">
+                <button class="py-2 w-full bg-main text-main-text font-bold">Eliminar filtro</button>
+              </router-link>
+            </div>
           </div>
         </div>
-        <div class="list-container2 flex flex-col h-full">
-          <div
-            class="list-container2-content w-full flex justify-between mb-10"
-          >
+
+        <div class="list-container2 flex flex-col h-max lg:hidden">
+          <div class="list-container2-content w-full flex justify-between mb-10">
             <div class="w-max">
               <h2 class="font-bold text-4xl" style="color: rgb(236, 216, 189)">
                 Catalogo
               </h2>
             </div>
           </div>
-          <div class="flex flex-col">
-            <div
-              v-if="search_status"
-              class="search-container mb-10 w-full flex"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="white"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                ></path>
-              </svg>
-              <input
-                type="search"
-                name=""
-                id=""
-                class="pl-2 w-full bg-transparent focus:outline-none text-white"
-              />
+          <div class="flex flex-col gap-5">
+            <div v-if="search_status" class="search-container mb-10 w-full flex">
+              <svg class="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              <input type="search" name="" id="" class="w-full bg-transparent focus:outline-none text-white"/>
             </div>
-            <div class="category2-container flex flex-col">
-              <div class="category2-content flex mb-5">
-                <select
-                  name=""
-                  id=""
-                  class="pl-2 w-full border-none bg-transparent focus:outline-none text-white"
-                >
-                  <option disabled selected>Categoria</option>
+            <div class="category2-container">
+              <div class="pb-2.5 flex border-b border-main">
+                <select @change="getProductsByCategorySelect" v-model="currentSelect" name="" id="" class="pl-2 w-full border-none bg-transparent focus:outline-none text-white">
+                  <option disabled selected value="">Selecciona la categoria</option>
+                  <option v-for="category in categories" :key="category.id" :value="category.slug" class="text-main-text">{{ category.name }}</option>
                 </select>
                 <button class="button-slide flex justify-center items-center">
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="white"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
+                  <svg class="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </button>
               </div>
             </div>
+            <div v-if="$route.params?.category">
+              <router-link to="/productos">
+                <button class="py-2 w-full bg-main text-main-text font-bold">Eliminar filtro</button>
+              </router-link>
+            </div>
           </div>
         </div>
-        <div class="products pl-6" style="height: max-content">
-          <div class="grid grid-cols-2 w-full h-full bg-gray-100 gap-10 p-10">
-            <div
-              v-for="product in products"
-              :key="product.name"
-              class="w-full mb-4 flex flex-col"
-            >
-              <div class="w-full mb-2">
+
+        <div class="w-full">
+          <div class="products__container p-5 w-full h-full bg-gray-200 gap-5">
+            <div v-if="productsView" v-for="(item, index) in 3" :key="index" class="h-max relative w-72 space-y-3 overflow-hidden rounded-md bg-neutral-200 p-3 shadow before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/20">
+              <div class="h-36 w-full rounded-lg bg-neutral-300"></div>
+              <div class="space-y-3">
+                <div class="h-5 w-8/12 rounded-full bg-neutral-300"></div>
+                <div class="space-y-1">
+                  <div class="h-4 w-full rounded-full bg-neutral-300 shadow"></div>
+                  <div class="h-4 w-full rounded-full bg-neutral-300 shadow"></div>
+                  <div class="h-4 w-full rounded-full bg-neutral-300 shadow"></div>
+                  <div class="h-4 w-7/12 rounded-full bg-neutral-300 shadow"></div>
+                </div>
+              </div>
+            </div>
+            <div v-else v-for="product in products" :key="product.name" class="w-full flex flex-col gap-2">
+              <div class="w-full">
                 <img class="rounded" :src="product.photo_source" :alt="product.name" />
               </div>
               <div>
@@ -114,13 +87,13 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
 <script>
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import Whatsapp from "../components/Whatsapp.vue";
 import supabase from "../services/supabase";
 import Header from "../components/Header.vue";
@@ -130,11 +103,16 @@ export default {
   components: { Header, Whatsapp },
   setup() {
     const route = useRoute();
+    const router = useRouter();
 
     const categories = ref([]);
     const products = ref([]);
+    const search_status = ref(false);
+    const productsView = ref(false);
+    const currentSelect = ref('');
 
     onMounted(() => {
+      route.params.category ? currentSelect.value = route.params.category : currentSelect.value = ''
       getCategories();
       getProducts();
     });
@@ -142,6 +120,7 @@ export default {
     watch(
       () => route.params.category,
       async (newCategory) => {
+        newCategory === undefined ? currentSelect.value = '' : currentSelect.value = newCategory
         await getProductsByCategory(newCategory);
       }
     );
@@ -156,29 +135,41 @@ export default {
     };
 
     const getProducts = async (value) => {
+      productsView.value = true
       try {
         let { data, error } = await supabase
           .from("products")
           .select('*')
         products.value = data;
+        productsView.value = false
       } catch (error) {
         console.log(error);
       }
     };
 
     const getProductsByCategory = async (value) => {
-      try {
-        let { data, error } = await supabase
-          .from("categories")
-          .select("products(*)")
-          .eq("slug", value);
-        products.value = data[0].products;
-      } catch (error) {
-        console.log(error);
+      productsView.value = true
+      if (route.params.category !== undefined) {
+        try {
+          let { data, error } = await supabase
+            .from("categories")
+            .select("products(*)")
+            .eq("slug", value);
+          products.value = data[0].products;
+          productsView.value = false
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        getProducts()
       }
     };
 
-    return { categories, products };
+    const getProductsByCategorySelect = () => {
+      router.push(`/productos/${currentSelect.value}`)
+    };
+
+    return { categories, products, search_status, getProductsByCategorySelect, currentSelect, productsView };
   },
 };
 </script>
@@ -187,36 +178,17 @@ export default {
 .background {
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
-.store-content {
+
+.products__container {
   display: grid;
-  grid-template-columns: auto 1fr;
-  max-width: 1080px;
+  justify-content: space-around;
+  grid-template-columns: repeat(auto-fill, max(280px));
 }
 
-.products-container {
-  display: grid;
-  padding: 40px;
-  justify-items: center;
-  background-color: rgb(238, 238, 238);
-}
-
-.list-container {
-  width: 250px;
-}
-
-.product-img img {
-  width: 200px;
-  height: 200px;
-}
-
-.list-container2 {
-  display: none !important;
-}
-
-.category2-content {
+/* .category2-content {
   padding-bottom: 10px;
   border-bottom: 1px solid rgb(254, 206, 81);
-}
+} */
 
 .category2-container select {
   appearance: none;
@@ -224,30 +196,7 @@ export default {
   -moz-appearance: none;
 }
 
-@media (max-width: 976px) {
-  .products-container {
-    padding: 30px;
-  }
-}
-
-@media (max-width: 810px) {
-  .store-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .products {
-    padding: 0 !important;
-    margin-bottom: 50px;
-  }
-
-  .list-container {
-    display: none;
-  }
-
-  .list-container2 {
-    display: flex !important;
-  }
+@media (max-width: 1024px) {
 
   .button-slide {
     width: 25px;
@@ -258,17 +207,6 @@ export default {
   .button-slide svg {
     width: 20px;
     height: 20px;
-  }
-
-  .search-container {
-    padding-bottom: 2px;
-    border-bottom: 1px solid rgb(254, 206, 81);
-  }
-}
-
-@media (max-width: 425px) {
-  .list-container2-content h2 {
-    font-size: 25px;
   }
 }
 </style>
