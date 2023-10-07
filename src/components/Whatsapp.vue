@@ -2,7 +2,7 @@
   <a
     href="https://api.whatsapp.com/send?phone=+573102174053&text=Saludos,%20Estoy%20interesado%20en%20recibir%20más%20información?"
     target="_blank"
-    class="flex items-center whatsapp-container rounded-full fixed z-40 cursor-pointer transition-all"
+    class="flex items-center whatsapp-container rounded-full fixed z-50 cursor-pointer transition-all"
   >
     <div class="flex justify-center items-center bg-white py-3 pl-5 pr-7 -mr-4 shadow-lg">
       <p class="">Cotiza con nosotros</p>

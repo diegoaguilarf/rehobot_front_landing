@@ -12,16 +12,18 @@ import Location from "../components/Location.vue";
 </script>
 
 <template>
-  <div class="bg-[#1B1925] pb-20">
+  <div class="w-full bg-[#1B1925] pb-20">
     <Whatsapp />
     <Top />
     <Header msg="Vite + Vue" />
-    <Intro />
-    <About />
-    <Brands />
-    <Contact />
-    <Location />
-    <Footer />
+    <div class="w-full flex flex-col gap-24 ">
+      <Intro />
+      <About />
+      <Brands />
+      <Contact />
+      <Location />
+      <Footer />
+    </div>
   </div>
 </template>
 
