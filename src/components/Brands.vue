@@ -25,7 +25,9 @@
                   </div>
                 </div>
                 <div class="button w-full flex">
-                  <button class="w-full p-4 font-bold text-white text-lg" style="border: 1px solid rgb(254, 206, 81)">Ver productos</button>
+                  <router-link to="/productos" class="w-full">
+                    <button class="w-full p-4 font-bold text-white text-lg" style="border: 1px solid rgb(254, 206, 81)">Ver productos</button>
+                  </router-link>
                 </div>
               </div>
             </swiper-slide>
@@ -36,6 +38,8 @@
   </div>
 </template>
 <script>
+import { onMounted, ref } from "vue";
+import supabase from "../services/supabase";
 import { Pagination, Navigation, Autoplay} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
@@ -50,81 +54,40 @@ export default {
   setup() {
 
     const breakpoints ={
-    320: {
-      slidesPerView: 1,
-    },
-    
-    425: {
-      slidesPerView: 1.2,
-    },
-    640: {
-      slidesPerView: 1.5,
-    },
-    768: {
-      slidesPerView: 3,
-    },
-  }
+      320: {
+        slidesPerView: 1,
+      },
+      
+      425: {
+        slidesPerView: 1.2,
+      },
+      640: {
+        slidesPerView: 1.5,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+    }
 
-    const brands = [
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/3m.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/link-tech.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/insafe.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/zubi-ola.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/allman.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/msa.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/steelpro.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/terrano.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/3025-calzado.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/croydon.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/protex.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/steel-series.jpg"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/ansell.jpg"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/idecal2.png"
-      },
-      {
-        photo_source: "https://uftijuaceaxomhbvnohk.supabase.co/storage/v1/object/public/brands/robusta-calzado.png"
+    onMounted(() => {
+      getBrands()
+    })
+
+    const brands = ref([])
+
+    const getBrands = async () => {
+      try {
+        let { data, error } = await supabase.from("brands").select("*");
+        brands.value = data;
+      } catch (error) {
+        console.log(error);
       }
-    ]
+    };
 
-    /* const onSwiper = (swiper) => {
-      console.log(swiper);
-    }; */
-    /* const onSlideChange = () => {
-      console.log("slide change");
-    }; */
 
     return {
       breakpoints,
       brands,
-      /* onSwiper,
-      onSlideChange, */
       modules: [Pagination, Navigation, Autoplay],
     };
   },
