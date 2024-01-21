@@ -5,29 +5,36 @@
     </div>
     <div class="w-full flex justify-center">
       <div class="bg-[#F89E19] w-full lg:max-w-2xl xl:max-w-[800px] py-10 px-8 xl:px-12 flex flex-col gap-3 xl:gap-5 border border-[#707070] lg:absolute lg:right-0 lg:right-5 lg:bottom-7">
-        <h2 class="font-league_spartan mb-3 font-black text-3xl text-center lg:text-start xl:text-5xl">
-          Acerca de Nosotros…
-        </h2>
+        <h2 class="font-league_spartan mb-3 font-black text-3xl text-center lg:text-start xl:text-5xl">{{ title.value }}</h2>
         <p class="font-light text-sm xl:text-lg text-center lg:text-start  leading-5 xl:leading-8">
-          Somos Soluciones Industriales Rehobot SAS. Empresa orgullosamente
-          llanera con vasta experiencia en la distribución y comercialización de
-          dotaciones industriales y elementos de protección personal en
-          Villavicencio Meta.
-        </p>
-        <p class="font-light text-sm xl:text-lg text-center lg:text-start  leading-5 xl:leading-8">
-          Estamos comprometidos con el desarrollo de la competitividad en el
-          gremio de la industria e ingeniería colombiana y nuestra razón de ser
-          está profundamente ligada a la formalización y el desarrollo de la
-          industria y agro-industria en el departamento del meta, así como a ser
-          partícipes y aliados estratégicos valiosos para los empresarios y
-          empresas de nuestra región.
+          {{ description.value }}
         </p>
       </div>
     </div>
   </section>
 </template>
 <script>
-export default {};
+  import { watch, ref } from "vue";
+
+  export default {
+    props:{
+      texts: Array, 
+    },
+    setup(props) {
+      const title = ref('');
+      const description = ref('');
+      
+      watch(() => props.texts, () => {
+        title.value = props.texts.find(item => item.key === 'about-us-title')
+        description.value = props.texts.find(item => item.key === 'about-us-description')
+      });
+
+      return {
+        title,
+        description
+      };
+    },
+  }
 </script>
 <style scoped>
 </style>

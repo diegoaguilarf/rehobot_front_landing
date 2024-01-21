@@ -4,9 +4,9 @@
     <div class="py-10 px-5 max-w-7xl w-full h-max flex justify-center">
       <div class="Banner-content w-full ">
         <div class="flex flex-col justify-around">
-          <h2 class="font-league_spartan mb-5 font-bold text-3xl xl:text-4xl text-center xl:text-start tracking-wide leading-10" style="color: rgb(236, 216, 189)">Elementos de protección Individual, Dotaciones industriales, y demás productos para la seguridad industrial</h2>
+            <h2 class="font-league_spartan mb-5 font-bold text-3xl xl:text-4xl text-center xl:text-start tracking-wide leading-10" style="color: rgb(236, 216, 189)">{{ title.value }}</h2>
           <div class="hidden xl:block">
-            <p class="mb-5 text-white">Productos de la más alta calidad de acuerdo y en cumplimiento con las normas y estándares más rigurosos para su uso en la industria</p>
+            <p class="mb-5 text-white">{{ description.value }}</p>
             <div class="w-full flex">
               <button class="mb-5 p-4 font-bold" style="background-color: #f89e19">Ver productos</button>
             </div>
@@ -77,9 +77,31 @@
     </div>
   </section>
 </template>
+
 <script>
-export default {};
+  import { watch, ref } from "vue";
+
+  export default {
+    props:{
+      texts: Array, 
+    },
+    setup(props) {
+      const title = ref('');
+      const description = ref('');
+      
+      watch(() => props.texts, () => {
+        title.value = props.texts.find(item => item.key === 'home-title')
+        description.value = props.texts.find(item => item.key === 'home-description')
+      });
+
+      return {
+        title,
+        description
+      };
+    },
+  }
 </script>
+
 <style scoped>
 .background {
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
