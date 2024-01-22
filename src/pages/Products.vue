@@ -80,9 +80,6 @@
               <div class="w-full">
                 <img class="rounded" :src="product.photo_source" :alt="product.name" />
               </div>
-              <div>
-                <p class="mb-1 text-xs italic text-gray-500">Reglamentario</p>
-              </div>
             </div>
           </div>
         </div>
