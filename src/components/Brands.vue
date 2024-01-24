@@ -21,7 +21,7 @@
                     <img class=" w-[100px]" :src="item.photo_source" alt=""/>
                   </div>
                   <div class="flex items-center">
-                    <p class="text-center text-sm" style="color: rgb(27, 25, 37)">Empresa llanera con amplia trayectoria en el mercado, teniendo un compromiso</p>
+                    <p class="text-center text-sm" style="color: rgb(27, 25, 37)">{{ item.description }}</p>
                   </div>
                 </div>
                 <div class="button w-full flex">
